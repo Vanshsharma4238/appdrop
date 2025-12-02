@@ -1,16 +1,57 @@
-# appdrop
+# AppDrop – Dynamic Widget Rendering (Flutter Assignment)
 
-A new Flutter project.
+This Flutter app implements a **dynamic widget rendering engine** that builds an entire mobile screen from a JSON schema. No UI is hardcoded – all components are rendered based on JSON definitions.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🎯 Objective
 
-A few resources to get you started if this is your first Flutter project:
+- Parse JSON describing a page layout.
+- Convert JSON into Dart models.
+- Use a widget factory to map `"type"` fields to concrete widgets.
+- Render the full screen dynamically (banner, carousel, grid, video, text).
+- Make the design clean, minimal, and easily extensible.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🧱 Architecture Overview
+
+**Main layers:**
+
+- `models/`
+  - `component_model.dart` – generic model for a single component.
+- `data/`
+  - `page_json.dart` – example page JSON used for rendering.
+- `widgets/`
+  - `banner_widget.dart`
+  - `carousel_widget.dart`
+  - `grid_widget.dart`
+  - `video_widget.dart`
+  - `text_widget.dart`
+- `factory/`
+  - `widget_factory.dart` – central place that maps `type` → widget.
+- `screens/`
+  - `home_screen.dart` – parses JSON and renders the list of components.
+
+The **entry flow** is:
+
+`JSON → Dart Models → WidgetFactory → Concrete Widgets → UI`
+
+---
+
+## 🧩 JSON → UI Mapping
+
+The app expects a JSON in this format:
+
+```json
+{
+  "page": {
+    "components": [
+      { "type": "banner", ... },
+      { "type": "carousel", ... },
+      { "type": "grid", ... },
+      { "type": "video", ... },
+      { "type": "text", ... }
+    ]
+  }
+}
