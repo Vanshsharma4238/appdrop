@@ -12,18 +12,32 @@ class TextBlockWidget extends StatelessWidget {
     final String? align = data['align'];
     final double fontSize = (data['size'] ?? 16).toDouble();
     final String? weight = data['weight'];
+    final String? font = data['font'];
 
     return Padding(
       padding: EdgeInsets.all(padding),
       child: Text(
         textValue,
-        textAlign: align == 'center' ? TextAlign.center : TextAlign.left,
+        textAlign: _resolveAlign(align),
         style: TextStyle(
-          fontFamily: 'NotoSans', // Use the NotoSans font
+          fontFamily: font ?? 'NotoSans', // Use the font from JSON, fallback to NotoSans
           fontSize: fontSize,
           fontWeight: weight == 'bold' ? FontWeight.bold : FontWeight.normal,
         ),
       ),
     );
+  }
+
+  TextAlign _resolveAlign(String? align) {
+    switch (align) {
+      case 'center':
+        return TextAlign.center;
+      case 'right':
+        return TextAlign.right;
+      case 'justify':
+        return TextAlign.justify;
+      default:
+        return TextAlign.left;
+    }
   }
 }

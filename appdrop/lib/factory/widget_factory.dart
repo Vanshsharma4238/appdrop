@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/component_model.dart' hide BannerWidget, TextBlockWidget, VideoBlockWidget, GridWidget, CarouselWidget;
+import '../models/component_model.dart';
 import '../widgets/banner_widget.dart';
 import '../widgets/carousel_widget.dart';
 import '../widgets/grid_widget.dart';

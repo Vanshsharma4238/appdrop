@@ -13,27 +13,32 @@ class BannerWidget extends StatelessWidget {
     final String? imageUrl = data['image'];
 
     if (imageUrl == null || imageUrl.isEmpty) {
-      return const Center(
-        child: Text(
-          'Image not available',
-          style: TextStyle(color: Colors.red),
+      return Padding(
+        padding: EdgeInsets.all(padding),
+        child: const Center(
+          child: Text(
+            'Image not available',
+            style: TextStyle(color: Colors.red),
+          ),
         ),
       );
     }
 
     return Padding(
       padding: EdgeInsets.all(padding),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(radius),
-        child: Image.network(
-          imageUrl,
-          height: height,
-          width: double.infinity,
-          fit: BoxFit.cover,
-          errorBuilder: (_, __, ___) => const Center(
-            child: Text(
-              'Failed to load image',
-              style: TextStyle(color: Colors.red),
+      child: SizedBox(
+        height: height,
+        width: double.infinity,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(radius),
+          child: Image.network(
+            imageUrl,
+            fit: BoxFit.cover,
+            errorBuilder: (_, __, ___) => const Center(
+              child: Text(
+                'Failed to load image',
+                style: TextStyle(color: Colors.red),
+              ),
             ),
           ),
         ),
