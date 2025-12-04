@@ -86,6 +86,7 @@ class _VideoBlockWidgetState extends State<VideoBlockWidget> {
                         onTap: _togglePlayPause,
                         behavior: HitTestBehavior.opaque,
                         child: Container(
+                          // ignore: deprecated_member_use
                           color: Colors.black.withOpacity(0.2),
                         ),
                       ),
