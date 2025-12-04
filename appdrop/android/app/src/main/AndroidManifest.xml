@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Internet permission needed for loading network images/videos in release builds -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:label="appdrop"
         android:name="${applicationName}"
